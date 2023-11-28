@@ -1,0 +1,32 @@
+
+<div class="table-responsive">
+    <h4>Reports List: </h4>
+    <table class="table table-dark table-hover">
+    <!-- <thead>
+      <tr>
+        <th scope="col" (click)="sortedColumn = 'location'">Location</th>
+        <th scope="col" (click)="sortedColumn = 'baddie_name'">Baddie's Name</th>
+        <th scope="col" (click)="sortedColumn = 'time'">Time Reported</th>
+        <th scope="col" (click)="sortedColumn = 'status'">Status</th>
+        <th scope="col" colspan="2">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let report of (incidents | tableSort : sortedColumn)">
+        <td>{{ report.location }}</td>
+        <td>{{ report.baddie_name }}</td>
+        <td>{{ report.time }}</td>
+        <td>{{ report.status }}</td>
+        <td><button>More Info</button></td>
+        <td><button>&#10005;</button></td>
+      </tr>
+    </tbody> -->
+      <tbody>
+        <tr *ngFor="let incident of (incidents)"> 
+            <!-- | tableSort:sortedColumn -->
+          <td>{{ incident.data }}</td>
+
+        </tr>
+      </tbody>
+  </table>
+  </div>
