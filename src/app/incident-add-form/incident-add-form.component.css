@@ -1,0 +1,22 @@
+form {
+    border: 1px solid black;
+    width: 70vw;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 0.5em;
+    user-select: none;
+    text-align: center;
+}
+
+table {
+    width: 70vw;
+}
+
+button {
+    margin-top: 0.5em;
+}
+
+.instructor-style {
+    border: 1px solid red;
+    box-shadow: 10px 5px 10px grey;
+}

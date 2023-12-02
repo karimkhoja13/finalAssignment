@@ -1,0 +1,19 @@
+<!-- <ng-container *ngIf="(incoming_incident| json) != ({} | json);"> -->
+    <!-- then ins else notins -->
+    
+    <!--    *ngIf="show" -->
+    <ng-container  *ngIf="(incoming_incident | json) != undefined;" >
+<h2 >More Info</h2>
+<img src="{{ incoming_incident?.image_url }}">
+<!-- <span *ngFor="let i of (incidents)">
+</span> -->
+<p><b>Baddie's Name:</b> {{ incoming_incident?.troublemaker_name }}</p>
+<p><b>Location:</b> {{ incoming_incident?.location }}</p>
+<p><b>Reported By:</b> {{ incoming_incident?.reporter_name }}</p>
+<p><b>Time:</b> {{ incoming_incident?.reported_at | date: 'medium' }}</p>
+<p><b>Status:</b> {{ incoming_incident?.status }} <button (click)='showOptions(incoming_incident?.key, incoming_incident?.status)'>{{buttonName}}</button></p>
+<p><b>Extra Info:</b> {{ incoming_incident?.problem_description }}</p>
+
+<button (click)="incoming_incident = undefined">HIDE Details</button><br><br>
+
+</ng-container>

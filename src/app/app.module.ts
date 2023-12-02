@@ -6,17 +6,24 @@ import { AppComponent } from './app.component';
 import { IncidentsListComponent } from './incidents-list/incidents-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TableSortPipe } from './table-sort.pipe';
+import { IncidentAddFormComponent } from './incident-add-form/incident-add-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MoreInfoComponent } from './more-info/more-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IncidentsListComponent,
-    TableSortPipe
+    TableSortPipe,
+    IncidentAddFormComponent,
+    MoreInfoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration()

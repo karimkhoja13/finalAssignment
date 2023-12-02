@@ -1,0 +1,52 @@
+    <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit(form.value)"
+    >
+    
+    <fieldset
+        class="d-grid gap-2 col-12"
+    >
+
+    <!-- "reporter_name": "reporter-name",
+        "troublemaker_name": "troublemaker-name",
+        "location": "test-location-1", 
+        "image_url": "optional",
+        "problem_description": "the bad guy is loudly singing out of tune",
+        "reported_at": this.i,
+        "status": "Open" -->
+    <legend>Report an Incident</legend>
+    <label>Reporting person's name (Your name): </label>
+    <input 
+        type="text"
+        name="reporter_name"
+        formControlName="reporter_name"
+    >
+    <label>Troublemaker's name: </label>
+    <input 
+        type="text"
+        name="troublemaker_name"
+        formControlName="troublemaker_name"
+    >
+    <label>Image URL: </label>
+    <input 
+        type="text"
+        name="image_url"
+        formControlName="image_url"
+    >
+    <label>Problem Description: </label>
+    <input 
+        type="text"
+        name="problem_description"
+        formControlName="problem_description"
+    >
+
+        <button 
+            class="btn btn-outline-primary"
+            [disabled]="!form.valid"
+            routerLink=""
+        >
+            SAVE
+        </button>
+    </fieldset>
+    
+    </form>

@@ -1,0 +1,164 @@
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class IncidentService {
+  incidents:any
+  i:number = 0;
+
+  constructor(private http: HttpClient){
+  }
+  get() {
+    return this.http.get('https://272.selfip.net/apps/JIimrghhB7/collections/incidents/documents/')
+    // .subscribe((data)=>{
+    //   // this.incidents = data;
+    //   return data; // return an observable
+    // });
+    //  this.http.get('https://272.selfip.net/apps/JIimrghhB7/collections/incidents/documents/')
+    //   .pipe(map((alldata: any) => alldata.data));
+  }
+  get_one(key: string) {
+    this.http.get('https://272.selfip.net/apps/JIimrghhB7/collections/incidents/documents/')
+    .subscribe((data)=>{
+      return data;
+    });
+  }
+  add(incident:any) {
+    this.i = new Date().getTime()
+    this.http.post('https://272.selfip.net/apps/JIimrghhB7/collections/incidents/documents/',{
+      "key": this.i.toString(),
+      "data": [{
+        "reporter_name": incident.reporter_name,
+        "troublemaker_name": incident.troublemaker_name,
+        "location": "dummy-location-1", 
+        "image_url": incident.image_url,
+        "problem_description": incident.problem_description,
+        "reported_at": this.i.toString(),
+        "status": "Open" // "Resolved" once the problem has been solved
+        // {"longitude": "long",
+        // "latitude": "lat"}
+      }]
+    }).subscribe(
+      (data:any)=>{
+        console.log(data);
+    })
+
+  }
+
+  incidentDelete(incident_key: string):Observable<number>{
+    // let httpheaders=new HttpHeaders().set('Content-type', 'application/Json');
+    // let options = {
+    //   headers:httpheaders
+    // };
+    return this.http.delete<number>('https://272.selfip.net/apps/JIimrghhB7/collections/incidents/documents/' + incident_key);
+  }
+}
+
+
+
+<form
+[formGroup]="form"
+>
+
+<fieldset
+    class="d-grid gap-2 col-12"
+>
+
+<!-- "reporter_name": "reporter-name",
+    "troublemaker_name": "troublemaker-name",
+    "location": "test-location-1", 
+    "image_url": "optional",
+    "problem_description": "the bad guy is loudly singing out of tune",
+    "reported_at": this.i,
+    "status": "Open" -->
+<legend>Report an Incident</legend>
+<label>Reporting person's name (Your name): </label>
+<input 
+    type="text"
+    name="reporter_name"
+    formControlName="reporter_name"
+>
+<label>Troublemaker's name: </label>
+<input 
+    type="text"
+    name="troublemaker_name"
+    formControlName="troublemaker_name"
+>
+<label>Image URL: </label>
+<input 
+    type="text"
+    name="image_url"
+    formControlName="image_url"
+>
+<label>Problem Description: </label>
+<input 
+    type="text"
+    name="problem_description"
+    formControlName="problem_description"
+>
+
+    <button 
+        class="btn btn-outline-primary"
+        [disabled]="!form.valid"
+        (click) = "onClick()"
+
+    >
+        SAVE
+    </button>
+</fieldset>
+
+</form>
+
+
+
+
+
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router'
+import { IncidentService } from '../incident.service';
+
+@Component({
+  selector: 'app-incident-add-form',
+  templateUrl: './incident-add-form.component.html',
+  styleUrl: './incident-add-form.component.css'
+})
+export class IncidentAddFormComponent {
+  form: FormGroup
+  constructor(private is: IncidentService, private router: Router){
+    let formControls = {
+      reporter_name: new FormControl('',[
+        Validators.required,
+        Validators.minLength(4)
+        
+      ]),
+      troublemaker_name: new FormControl(),
+      image_url: new FormControl(),
+      problem_description: new FormControl()
+    }
+    this.form = new FormGroup(formControls)
+  }
+
+  onClick() {
+    console.log(this.form.value)
+    this.is.add(this.form.value)
+    // this.is.get();
+    this.router.navigate([""])
+  }
+}
+
+
+
+
+ngOnInit(): void {
+  this.http.get('https://272.selfip.net/apps/yourAppID/collections/mycollection/documents/')
+    .subscribe((data)=>{
+      var rows = <Array<any>>data;
+      console.log(rows[0].key);
+      console.log(rows[0].data);
+    })
+}

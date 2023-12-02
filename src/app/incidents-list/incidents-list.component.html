@@ -1,7 +1,9 @@
 
 <div class="table-responsive">
+  
+  <app-more-info [incoming_incident]="selectedIncident"></app-more-info>
     <h4>Reports List: </h4>
-    <table class="table table-dark table-hover">
+    <table class="table table-hover">
     <!-- <thead>
       <tr>
         <th scope="col" (click)="sortedColumn = 'location'">Location</th>
@@ -21,12 +23,36 @@
         <td><button>&#10005;</button></td>
       </tr>
     </tbody> -->
+    <thead>
+      <tr>
+        <th scope="col" (click)="sortedColumn = 'i.location'">Location</th>
+        <th scope="col" (click)="sortedColumn = 'i.troublemaker_name'">Baddie's Name</th>
+        <th scope="col" (click)="sortedColumn = 'time'">Time Reported</th>
+        <th scope="col" (click)="sortedColumn = 'status'">Status</th>
+        <th scope="col" colspan="2">Options</th>
+      </tr>
+    </thead>
       <tbody>
-        <tr *ngFor="let incident of (incidents)"> 
+        <tr *ngFor="let i of (incidents | tableSort : sortedColumn)">
             <!-- | tableSort:sortedColumn -->
-          <td>{{ incident.data }}</td>
-
+          <td>{{ i.location }}</td>
+          <td>{{ i.troublemaker_name }}</td>
+          <td>{{ i.reported_at| date: 'medium' }}</td>
+          <td>{{ i.status }}</td>
+          <td><button class="btn btn-outline-info"
+            (click)="onSelect(i)">More Info</button></td>
+          <td><button class="btn btn-outline-danger"
+            (click)="delete(i.key)" 
+            >&#10005;</button></td>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <button 
+            routerLink="/AddIncident" class="btn btn-outline-primary">CREATE A NEW NUISANCE REPORT</button>
+          </td>
         </tr>
       </tbody>
   </table>
-  </div>
+  </div>  
+
+
