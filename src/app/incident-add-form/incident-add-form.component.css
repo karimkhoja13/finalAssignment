@@ -20,3 +20,8 @@ button {
     border: 1px solid red;
     box-shadow: 10px 5px 10px grey;
 }
+
+#map {
+    height: 180px; 
+    width: 200px;
+}

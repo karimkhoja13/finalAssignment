@@ -9,6 +9,7 @@ import { TableSortPipe } from './table-sort.pipe';
 import { IncidentAddFormComponent } from './incident-add-form/incident-add-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MoreInfoComponent } from './more-info/more-info.component';
+import { MapTestComponent } from './map-test/map-test.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MoreInfoComponent } from './more-info/more-info.component';
     IncidentsListComponent,
     TableSortPipe,
     IncidentAddFormComponent,
-    MoreInfoComponent
+    MoreInfoComponent,
+    MapTestComponent
   ],
   imports: [
     BrowserModule,

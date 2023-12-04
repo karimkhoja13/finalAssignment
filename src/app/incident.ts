@@ -1,5 +1,6 @@
 export class incident {
    reporter_name:string
+   reporter_phone:number
    troublemaker_name:string
     location:string
     image_url:string
@@ -9,6 +10,7 @@ export class incident {
     key:string
 
     constructor(reporter_name: string, 
+        reporter_phone: number, 
         troublemaker_name: string, 
         location: string, 
         image_url:string, 
@@ -17,6 +19,7 @@ export class incident {
         status:string,
         key:string){
     this.reporter_name = reporter_name
+    this.reporter_phone = reporter_phone
     this.troublemaker_name = troublemaker_name
     this.location=location
     this.image_url =image_url

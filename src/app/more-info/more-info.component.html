@@ -9,10 +9,12 @@
 </span> -->
 <p><b>Baddie's Name:</b> {{ incoming_incident?.troublemaker_name }}</p>
 <p><b>Location:</b> {{ incoming_incident?.location }}</p>
-<p><b>Reported By:</b> {{ incoming_incident?.reporter_name }}</p>
+<p><b>Reported By:</b> {{ incoming_incident?.reporter_name }} ( {{ incoming_incident?.reporter_phone }} )
+</p>
 <p><b>Time:</b> {{ incoming_incident?.reported_at | date: 'medium' }}</p>
-<p><b>Status:</b> {{ incoming_incident?.status }} <button (click)='showOptions(incoming_incident?.key, incoming_incident?.status)'>{{buttonName}}</button></p>
-<p><b>Extra Info:</b> {{ incoming_incident?.problem_description }}</p>
+<p><b>Status:</b> {{ incoming_incident?.status }} <button (click)="showOptions(incoming_incident?.key, 'Resolved')" *ngIf="incoming_incident?.status === 'Resolved'">{{ buttonName }} Open</button>
+    <button (click)="showOptions(incoming_incident?.key, 'Open')" *ngIf="incoming_incident?.status === 'Open'">{{ buttonName }} Resolved</button></p>
+    <p><b>Extra Info:</b> {{ incoming_incident?.problem_description }}</p>
 
 <button (click)="incoming_incident = undefined">HIDE Details</button><br><br>
 

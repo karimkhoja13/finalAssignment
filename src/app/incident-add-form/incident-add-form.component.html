@@ -1,3 +1,5 @@
+<div id="mapid"></div>    
+    
     <form
     [formGroup]="form"
     (ngSubmit)="onSubmit(form.value)"
@@ -21,12 +23,28 @@
         name="reporter_name"
         formControlName="reporter_name"
     >
+
+    <label>Reporting person's phone (Your contact): </label>
+    <input 
+        type="number"
+        name="reporter_phone"
+        formControlName="reporter_phone"
+    >
+
     <label>Troublemaker's name: </label>
     <input 
         type="text"
         name="troublemaker_name"
         formControlName="troublemaker_name"
     >
+
+    <label>Location: </label>
+    <input 
+        type="text"
+        name="location"
+        formControlName="location"
+    >
+
     <label>Image URL: </label>
     <input 
         type="text"
@@ -40,13 +58,23 @@
         formControlName="problem_description"
     >
 
+
         <button 
             class="btn btn-outline-primary"
             [disabled]="!form.valid"
-            routerLink=""
+            
         >
+        <!-- routerLink="" -->
             SAVE
         </button>
+        <button
+    class="btn btn-outline-danger">
+    <!-- *ngIf="showForm===true; then toggle() -->
+    
+    CANCEL
+</button>
+<!-- <ng-template #ins [showForm]=false></ng-template> -->
     </fieldset>
     
     </form>
+
